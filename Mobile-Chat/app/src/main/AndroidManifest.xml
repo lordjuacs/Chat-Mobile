@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ChatActivity"></activity>
-        <activity android:name=".ContactsAdapter" />
+        <activity android:name=".ChatActivity" />
+
         <activity android:name=".ContactsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

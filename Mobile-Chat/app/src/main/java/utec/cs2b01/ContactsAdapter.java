@@ -31,6 +31,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         this.userFromId = userFromId;
     }
 
+    public ContactsAdapter() {
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -81,7 +84,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         Intent intent = new Intent(this.context, ChatActivity.class);
         intent.putExtra("userFromId", userFromId);
         intent.putExtra("userToId", userToId);
-        intent.putExtra("username", username);
+        intent.putExtra("usernameTo", username);
         this.context.startActivity(intent);
     }
 }
