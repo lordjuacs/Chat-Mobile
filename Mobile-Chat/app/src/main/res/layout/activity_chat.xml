@@ -5,11 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChatActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/messages_recycler_view">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/chat_box">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messages_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-79dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+        android:layout_width="325dp"
+        android:layout_height="44dp"
+        android:hint="@string/type_something"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="558dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:text="SEND"
+            android:layout_width="86dp"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="325dp"
+            tools:layout_editor_absoluteY="553dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
