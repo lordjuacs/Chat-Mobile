@@ -30,6 +30,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
+        android:id="@+id/content"
         android:layout_width="325dp"
         android:layout_height="44dp"
         android:hint="@string/type_something"
@@ -39,10 +40,10 @@
         tools:layout_editor_absoluteY="558dp" />
 
         <Button
-            android:id="@+id/button2"
-            android:text="SEND"
             android:layout_width="86dp"
             android:layout_height="wrap_content"
+            android:onClick="onSendClicked"
+            android:text="SEND"
             tools:layout_editor_absoluteX="325dp"
             tools:layout_editor_absoluteY="553dp" />
 

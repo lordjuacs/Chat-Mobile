@@ -3,17 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="22dp"
-    android:padding="10dp"
     android:id="@+id/message_view_container">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:gravity="left">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:id="@+id/message_view_friend_line"
-            android:textColor="#B3C">
+            android:textColor="#000">
         </TextView>
     </LinearLayout>
 
@@ -25,8 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/message_view_my_line"
+            android:textSize="16sp"
             android:textColor="#000"
-            android:ems="10"
             android:textStyle="bold">
         </TextView>
     </LinearLayout>

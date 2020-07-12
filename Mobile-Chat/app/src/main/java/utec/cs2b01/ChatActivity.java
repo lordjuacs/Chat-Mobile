@@ -9,15 +9,24 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.JsonToken;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
     int userFromId;
@@ -68,6 +77,63 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 }
         );
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
+    }
+    public void showMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    public void onSendClicked(View view){
+        //TODO Implement Login
+        //1. Get data from Layout
+        EditText txtContent = (EditText)findViewById(R.id.content);
+        String content = txtContent.getText().toString();
+
+
+        //2. Build JSON Message
+        Map<String, String> message = new HashMap<String, String>();
+        message.put("user_from_id", Integer.toString(userFromId));
+        message.put("user_to_id", Integer.toString(userToId));
+        message.put("content", content);
+
+
+        JSONObject jsonMessage = new JSONObject(message);
+        //Toast.makeText(this, jsonMessage.toString(), Toast.LENGTH_LONG).show();
+
+        //3. Build Request Object --> volley
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                "http://10.0.2.2:8080/new_message",
+                jsonMessage,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //TODO when OK Response
+                        showMessage("Sent!");
+                        getMessages();
+                        //showMessage(response.toString());
+                        //Opening Contacts Activity<
+                       /* try {
+                            String username = response.getString("username");
+                            int id = response.getInt("id");
+                            //goContactsActivity(username, id);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+*/
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //TODO when Error Response
+                        showMessage("Failed!");
+                    }
+                }
+        );
+
+        //4. Send Request Message to server
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
     }

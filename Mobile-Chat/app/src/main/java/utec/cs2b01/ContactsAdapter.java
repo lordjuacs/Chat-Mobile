@@ -47,21 +47,25 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
             final JSONObject user = users.getJSONObject(position);
             String name = user.getString("name") + " " + user.getString("fullname");
             final String username = user.getString("username");
-            holder.firstLine.setText(name);
-            holder.secondLine.setText("@" + username);
-            holder.container.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    try {
-                        goToChatActivity(userFromId, user.getInt("id"), username);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+            int friendUser = user.getInt("id");
+            if (friendUser != userFromId) {
+                holder.firstLine.setText(name);
+                holder.secondLine.setText("@" + username);
+                holder.container.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        try {
+                            goToChatActivity(userFromId, user.getInt("id"), username);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-            });
+                });
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
