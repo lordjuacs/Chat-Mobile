@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.JsonToken;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
@@ -51,6 +55,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onResume();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         getMessages();
+        runTimer(1);
     }
     public Activity getActivity(){
         return this;
@@ -80,9 +85,65 @@ public class ChatActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
     }
+    private void runTimer(int valid) {
+        final Handler handler = new Handler();
+        if(valid == 1) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    getMessages();
+                    handler.postDelayed(this, 3000);
+                }
+            });
+        }
+        else {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    handler.removeCallbacks(this);
+                }
+            });
+        }
+    }
     public void showMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+    public void goMainActivity(){
+        //TODO Implement Login
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void onLogoutClicked(View view){
+        //TODO Implement Login
+        //3. Build Request Object --> volley
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                "http://10.0.2.2:8080/logout",
+                new JSONObject(),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //TODO when OK Response
+                        showMessage("Logged Out!");
+                        runTimer(0);
+                        goMainActivity();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //TODO when Error Response
+                        showMessage("Failed!");
+                    }
+                }
+        );
+
+        //4. Send Request Message to server
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
+    }
+
 
     public void onSendClicked(View view){
         //TODO Implement Login
