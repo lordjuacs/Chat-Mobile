@@ -1,38 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="22dp"
-
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:id="@+id/message_view_container">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:gravity="left">
+        android:gravity="left"
+        android:orientation="vertical">
         <TextView
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:background="@drawable/friend_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:id="@+id/message_view_friend_line"
             android:textColor="#000">
         </TextView>
+        <TextView
+            android:id="@+id/message_view_friend_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#a2aeb8"
+            android:textSize="10sp">
+        </TextView>
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingRight="10dp"
         android:gravity="right"
-        android:paddingRight="10dp">
+        android:orientation="vertical">
         <TextView
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:background="@drawable/my_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/message_view_my_line"
             android:textSize="16sp"
-            android:textColor="#000"
-            android:textStyle="bold">
+            android:id="@+id/message_view_my_line"
+            android:textColor="#000">
+        </TextView>
+        <TextView
+            android:id="@+id/message_view_my_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#a2aeb8"
+            android:textSize="10sp">
         </TextView>
     </LinearLayout>
+
 
 </RelativeLayout>
 

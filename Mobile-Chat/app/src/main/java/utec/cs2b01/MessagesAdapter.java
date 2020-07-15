@@ -41,15 +41,22 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
         try {
             JSONObject message = messages.getJSONObject(position);
             String content = message.getString("content");
+            String time = message.getString("sent_on");
             int whoSent = message.getInt("user_from_id");
             if(whoSent == loggedUserId) {
+                //holder.friendLine.setBackgroundResource(0);
                 holder.myLine.setText(content);
-                holder.friendLine.setText("");
+                holder.myTime.setText(time);
+                holder.friendLine.setText(" ");
+                holder.friendTime.setText(" ");
 
             }
             else{
+                //holder.myLine.setBackgroundResource(0);
                 holder.friendLine.setText(content);
-                holder.myLine.setText("");
+                holder.friendTime.setText(time);
+                holder.myLine.setText(" ");
+                holder.myTime.setText(" ");
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -65,6 +72,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView friendLine;
         TextView myLine;
+        TextView myTime;
+        TextView friendTime;
         RelativeLayout container;
 
         public ViewHolder(View itemView){
@@ -72,6 +81,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
             friendLine = itemView.findViewById(R.id.message_view_friend_line);
             myLine = itemView.findViewById(R.id.message_view_my_line);
             container = itemView.findViewById(R.id.message_view_container);
+            myTime = itemView.findViewById(R.id.message_view_my_time);
+            friendTime = itemView.findViewById(R.id.message_view_friend_time);
+
         }
     }
 }

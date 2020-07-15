@@ -6,25 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/element_view_container"
     android:padding="10dp">
-        <LinearLayout
-            android:id="@+id/logout_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <Button
-                android:layout_width="86dp"
-                android:layout_height="wrap_content"
-                android:onClick="onLogoutClicked"
-                android:text="LOGOUT"
-                tools:layout_editor_absoluteX="325dp"
-                tools:layout_editor_absoluteY="553dp" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

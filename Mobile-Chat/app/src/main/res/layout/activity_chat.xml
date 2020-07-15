@@ -34,7 +34,7 @@
 
         <EditText
             android:id="@+id/content"
-            android:layout_width="325dp"
+            android:layout_width="300dp"
             android:layout_height="44dp"
             android:hint="@string/type_something"
             app:layout_constraintEnd_toStartOf="@+id/button2"
