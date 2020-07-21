@@ -47,16 +47,16 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
                 //holder.friendLine.setBackgroundResource(0);
                 holder.myLine.setText(content);
                 holder.myTime.setText(time);
-                holder.friendLine.setText(" ");
-                holder.friendTime.setText(" ");
+                holder.friendLine.setVisibility(View.INVISIBLE);
+                holder.friendTime.setVisibility(View.INVISIBLE);
 
             }
             else{
-                //holder.myLine.setBackgroundResource(0);
+                //holder.myLine.setBackgroundResource();
                 holder.friendLine.setText(content);
                 holder.friendTime.setText(time);
-                holder.myLine.setText(" ");
-                holder.myTime.setText(" ");
+                holder.myLine.setVisibility(View.INVISIBLE);
+                holder.myTime.setVisibility(View.INVISIBLE);
             }
         } catch (JSONException e) {
             e.printStackTrace();
